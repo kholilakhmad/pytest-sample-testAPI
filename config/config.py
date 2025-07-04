@@ -1,3 +1,4 @@
+
 BASE_URL = "https://jsonplaceholder.typicode.com"
 HEADERS = {
     "Content-Type": "application/json",
@@ -12,3 +13,4 @@ AUTH_HEADERS = {
     "Accept": "application/json",
     "x-api-key": "reqres-free-v1"
 }
+
