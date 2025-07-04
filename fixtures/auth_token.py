@@ -29,5 +29,6 @@ def token(auth_url, headers_auth):
 def auth_headers(token):
     return {
         "Authorization": f"Bearer {token}",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "x-api-key": "reqres-free-v1"
     }

@@ -1,16 +1,42 @@
 import requests
+import json
 from pprint import pprint  # for prettier JSON output
 from utils.helpers import build_login_payload
 from fixtures.auth_token import auth_url, headers_auth, auth_headers, token
 
+def test_print_request_details(auth_url,auth_headers):
+    payload = {
+        "name": "Jane Doe",
+        "job": "QA Engineer"
+    }
+    response = requests.post((f"{auth_url}/users"), json=payload, headers=auth_headers)
+    # 🔍 Print Request Headers
+    print("\n🔍 Request Headers:")
+    for k, v in response.request.headers.items():
+        print(f"{k}: {v}")
+
+    # 📤 Print Request Body (decoded if JSON)
+    print("\n📤 Request Body:")
+    try:
+        body = json.loads(response.request.body.decode()) if isinstance(response.request.body, bytes) else json.loads(response.request.body)
+        print(json.dumps(body, indent=2))
+    except Exception:
+        print(response.request.body)  # fallback for non-JSON
+
+    # 📥 Print Response (optional)
+    print("\n📥 Response:")
+    print(f"Status Code: {response.status_code}")
+    print(response.text)
+
+    assert response.status_code in [200, 201]
 
 
-def test_user_create_show_token(token, auth_url, headers_auth):
+def test_user_create_show_token(auth_url, auth_headers):
     payload = {
         "name": "John Doe",
         "job": "Software Engineer"
     }  
-    response = requests.post((f"{auth_url}/users"), json=payload, headers=headers_auth)
+    response = requests.post((f"{auth_url}/users"), json=payload, headers=auth_headers)
     assert response.status_code in [200, 201]
     pprint(response.json())
 
