@@ -1,3 +1,17 @@
+def build_login_payload(username, password):
+    """
+    Build a payload for user login.
+    
+    :param username: The username of the user.
+    :param password: The password of the user.
+    :return: A dictionary representing the login payload.
+    """
+    return {
+        "username": username,
+        "password": password
+    }
+
+
 def build_user_payload(name, username, email):
     """
     Build a payload for creating a new user.
