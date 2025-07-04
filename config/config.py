@@ -4,7 +4,7 @@ HEADERS = {
     "Accept": "application/json"
 }
 
-AUTH_URL = "https://reqres.in/api/login"
+AUTH_URL = "https://reqres.in/api" 
 EMAIL = "eve.holt@reqres.in"
 PASSWORD = "cityslicka"
 AUTH_HEADERS = {
